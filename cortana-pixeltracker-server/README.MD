@@ -2,9 +2,9 @@
 # Pixel Tracker Java Service
 
 ## Pixel API
+### Pixel.java
 An interface and an abstract class are provided to base a Pixel API upon. The interface, **Pixel.java** first contains the request mapping for the path **/pixel**, using the Spring **@RequestMapping** annotation. It next sets the produced media type of the API to GIF. Lastly, it specifically requires GET requests, and will aceppt all headers. While these can be overridden, building future APIs upon this interface will help maintain backward comptabiltiy. The **@RequestParam** annotation is used to pass the query string from the request to the java class. 
 
-### Pixel.java
 ```java
 package com.microsoft.azure.server.pixeltracker.api;
 
