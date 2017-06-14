@@ -118,3 +118,40 @@ public abstract class AbstractHandler implements Handler {
                 : this.childHandler.handle(request);
     }
 ```
+
+###JsonQueryStringHandler.java
+The **JsonQueryStringHandler.java** handler processes the query string from the web request and converts it into a JSON. 
+
+```java
+package com.microsoft.azure.server.pixeltracker.api.handlers.impl;
+
+import ...;
+
+public class JsonQueryStringHandler extends AbstractHandler {
+    private static Logger logger = LogManager.getLogger();
+    private final String PARAMDELIM = "&";
+
+    @Override
+    public void strategy(Request request) throws Exception {...}
+
+    private boolean isNotEmpty(String queryString) {...}
+
+    private Stream<String> getParamsFrom(String queryString) {...}
+
+    private void putIntoOutput(String param, Request request) {...}
+}
+```
+
+The *strategy* first retrieves the query string from the request object. It then checks to see if the there were entries in the query string. Next, it places each parameter into the output json, stored in the request object. 
+
+```java
+   @Override
+    public void strategy(Request request) throws Exception {
+        logger.trace("Json Query String Strategy");
+        String queryString = request.getQueryString();
+        if (isNotEmpty(queryString))
+            getParamsFrom(queryString)
+                    .forEach(param -> putIntoOutput(param, request));
+        else request.setSuccess(false);
+    }
+```
