@@ -98,7 +98,7 @@ public abstract class AbstractHandler implements Handler {
     private Future<Boolean> chainHandler(Request request) throws Exception {...}
 }
 
-*Handle* will be called on each API request. The abstract class implments a common flow of *strategy*, then *chainHandler* that should be followed on each request. Strategy is not implementing in the abstract class, and must be written for each implementation. 
+*Handle* will be called on each API request. The abstract class implments a common flow of *strategy*, then *chainHandler* that should be followed on each request. *Strategy* is not implemented in the abstract class, and must be written for each implementation. 
 
 ```java
     @Override
@@ -107,4 +107,12 @@ public abstract class AbstractHandler implements Handler {
         return chainHandler(request);
     }
 ```
+*chainHandler* determines the order in which transformations are performed. The default implementation is to synchronously call the next handler. This default behavior can be overridden if desired.
 
+```java
+    public Future<Boolean> chainHandler(Request request) throws Exception {
+        return childHandler == null
+                ? new AsyncResult<>(request.isSuccess())
+                : this.childHandler.handle(request);
+    }
+```
