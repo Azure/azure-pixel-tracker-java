@@ -15,6 +15,7 @@ The abstract implementation, **AbstractPixel.java**, adds some basic functionali
 package com.microsoft.azure.server.pixeltracker.api;
 
 ```java
+package com.microsoft.azure.server.pixeltracker.api;
 import ...
 
 public class AbstractPixel implements Pixel {
