@@ -11,7 +11,15 @@ An interface and an abstract class are provided to base a Pixel API upon. The in
     byte[] pixel(@RequestParam Map<String, String> queryParameters);
 ```
 
-The abstract implementation, **AbstractPixel.java**, adds some basic functionality to the class. First, it creates the base constructor which performs a fast fail check on the handlers input. Second, it declares the functionality of the pixel operation that was stubbed in the interface. This establishings a default logic for the API that could be overridden if desired.
+The abstract implementation, **AbstractPixel.java**, adds some basic functionality to the class. First, it creates the base constructor which performs a fast fail check on the handlers input.
+
+```java
+    public AbstractPixel(Handler handlers) throws Exception {
+        if (handlers == null) throw new Exception("Handler not expected to be null. Check your Spring Config!");
+        this.handlers = handlers;
+    }
+```    
+ Second, it declares the functionality of the pixel operation that was stubbed in the interface. This establishings a default logic for the API that could be overridden if desired.
 
 ```java
     @Override
