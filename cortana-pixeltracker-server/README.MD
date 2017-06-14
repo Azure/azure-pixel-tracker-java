@@ -37,7 +37,7 @@ public class AbstractPixel implements Pixel {
 }
 ```
 
-First, it creates the base constructor which performs a fast fail check on the handlers input.
+First, it creates the base constructor, which performs a fast fail check on the handlers input.
 
 ```java
     public AbstractPixel(Handler handlers) throws Exception {
@@ -45,7 +45,7 @@ First, it creates the base constructor which performs a fast fail check on the h
         this.handlers = handlers;
     }
 ```    
- Second, it declares the functionality of the pixel operation that was stubbed in the interface. This establishings a default logic for the API that could be overridden if desired.
+ Second, it declares the functionality of the pixel operation that was stubbed in the interface. This establishings a default logic for the API that could be overridden if desired. Log4j2 is used to record any unexpected errors. 
 
 ```java
     @Override
