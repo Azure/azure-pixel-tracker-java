@@ -59,3 +59,52 @@ First, it creates the base constructor, which performs a fast fail check on the 
     }
 ```
 
+##Handlers
+###Handler.java
+**Handler.java** is an interface for chaining together transformations. Each handler will implement a *handle*, *strategy* and *setNextOperation* method.
+
+```java
+package com.microsoft.azure.server.pixeltracker.api.handlers;
+
+import ...;
+
+public interface Handler {
+    Future<Boolean> handle(Request request) throws Exception;
+
+    void strategy(Request request) throws Exception;
+
+    Handler setNextOperation(Handler childHandler);    
+}
+```
+
+###AbstractHandlerjava
+**AbstractHandler.java** is an abstract class that makes implemnting the interface simpler. 
+
+package com.microsoft.azure.server.pixeltracker.api.handlers.impl;
+
+import ...;
+
+public abstract class AbstractHandler implements Handler {
+    private Handler childHandler = null;
+
+    @Override
+    public Handler setNextOperation(Handler childHandler) {...}
+
+    @Override
+    public Future<Boolean> handle(Request request) throws Exception {...}
+
+    private Handler setChildHandler(Handler childHandler) {...}
+
+    private Future<Boolean> chainHandler(Request request) throws Exception {...}
+}
+
+*Handle* will be called on each API request. The abstract class implments a common flow of *strategy*, then *chainHandler* that should be followed on each request. Strategy is not implementing in the abstract class, and must be written for each implementation. 
+
+```java
+    @Override
+    public Future<Boolean> handle(Request request) throws Exception {
+        strategy(request);
+        return chainHandler(request);
+    }
+```
+
