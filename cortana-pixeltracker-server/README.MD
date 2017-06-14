@@ -11,7 +11,24 @@ An interface and an abstract class are provided to base a Pixel API upon. The in
     byte[] pixel(@RequestParam Map<String, String> queryParameters);
 ```
 
-The abstract implementation, **AbstractPixel.java**, adds some basic functionality to the class. First, it creates the base constructor which performs a fast fail check on the handlers input.
+The abstract implementation, **AbstractPixel.java**, adds some basic functionality to the class. 
+package com.microsoft.azure.server.pixeltracker.api;
+
+```java
+import ...
+
+public class AbstractPixel implements Pixel {
+    private static Logger logger = LogManager.getLogger();
+    private final Handler handlers;
+
+    public AbstractPixel(Handler handlers) throws Exception {...}
+
+    @Override
+    public byte[] pixel(Map<String, String> queryParameters) {...}
+}
+```
+
+First, it creates the base constructor which performs a fast fail check on the handlers input.
 
 ```java
     public AbstractPixel(Handler handlers) throws Exception {
