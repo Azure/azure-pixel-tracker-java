@@ -80,6 +80,7 @@ public interface Handler {
 ###AbstractHandlerjava
 **AbstractHandler.java** is an abstract class that makes implemnting the interface simpler. 
 
+```java
 package com.microsoft.azure.server.pixeltracker.api.handlers.impl;
 
 import ...;
@@ -97,6 +98,7 @@ public abstract class AbstractHandler implements Handler {
 
     public Future<Boolean> chainHandler(Request request) throws Exception {...}
 }
+```
 
 *Handle* will be called on each API request. The abstract class implments a common flow of *strategy*, then *chainHandler* that should be followed on each request. *Strategy* is not implemented in the abstract class, and must be written for each implementation. 
 
