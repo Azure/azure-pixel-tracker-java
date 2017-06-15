@@ -100,7 +100,7 @@ public abstract class AbstractHandler implements Handler {
 }
 ```
 
-*Handle* will be called on each API request. The abstract class implments a common flow of *strategy*, then *chainHandler* that should be followed on each request. *Strategy* is not implemented in the abstract class, and must be written for each implementation. 
+*handle* will be called on each API request. The abstract class implments a common flow of *strategy*, then *chainHandler* that should be followed on each request. *Strategy* is not implemented in the abstract class, and must be written for each implementation. 
 
 ```java
     @Override
