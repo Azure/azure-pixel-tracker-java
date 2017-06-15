@@ -156,12 +156,7 @@ The *strategy* first retrieves the query string from the request object. It then
 The **EventHubSendHandler.java** takes the JSON stored in request, and sends it to Event Hub for storage and processing. Spring is used to wire the Event Hub configurations. The configurations will be declared as beans in the main class of our service.
 
 ```java
-/*
- * Copyright (c) Microsoft. All rights reserved.
- * Licensed under the MIT license. See LICENSE file in the project root for full license information.
- */
 package com.microsoft.azure.server.pixeltracker.api.handlers.impl;
-
 import ...;
 
 public class EventHubSendHandler extends AbstractHandler {
