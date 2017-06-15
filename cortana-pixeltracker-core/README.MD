@@ -193,7 +193,7 @@ The *strategy* checks to see that the previous handlers were succesful, and then
         if (request.isSuccess()) sendWithEventHubClient(request);
     }
 ```
-
+##Event Hub Configuration
 ###EventHubTemplate.java
 
 The **EventHubTemplate.java** class is used to help wire the configurations for Event Hub using Spring. It provides getters that are used by other classes to retrieve the stored credentials. 
@@ -238,5 +238,59 @@ The *constructor* provides a fast fail in case the parameters for event hub have
         this.serviceBusNamespaceName = serviceBusNamespaceName;
         this.sharedAccessSignatureKeyName = sharedAccessSignatureKeyName;
         this.sharedAccessSignatureKey = sharedAccessSignatureKey;
+    }
+```
+
+###EventHubAutoConfiguration.java
+
+```java
+package com.microsoft.azure.eventhubs.spring;
+
+import ...;
+
+@Configuration
+@ConditionalOnClass({com.microsoft.azure.eventhubs.EventHubClient.class})
+@Conditional({EventHubAutoConfiguration.EventHubPropertyCondition.class})
+@EnableConfigurationProperties({EventHubTemplate.class})
+public class EventHubAutoConfiguration {
+    private static Logger logger = LogManager.getLogger();
+    private final EventHubTemplate eventHubTemplate;
+    private EventHubClient ehClient;
+
+    public EventHubAutoConfiguration(EventHubTemplate eventHubTemplate) {...}
+
+    @Bean
+    @ConditionalOnMissingBean({EventHubClient.class})
+    public EventHubClient eventHubClient() {...}
+
+    static class EventHubPropertyCondition extends AnyNestedCondition {...}
+}
+```
+
+The *constructor* takes an EventHubTemplate and should be wired using Spring. 
+
+```java
+    public EventHubAutoConfiguration(EventHubTemplate eventHubTemplate) {
+        this.eventHubTemplate = eventHubTemplate;
+    }
+```
+
+The *eventHubClient* method acts as a getter method. It will first check to see if an Event Hub Client has already been intialized. If not it will create one. Then it will provide thread safe access to the event hub client.
+
+```java
+    public EventHubClient eventHubClient() {
+        if (ehClient == null) {
+            ConnectionStringBuilder connStr = new ConnectionStringBuilder(
+                    eventHubTemplate.getServiceBusNamespaceName(),
+                    eventHubTemplate.getEventHubName(),
+                    eventHubTemplate.getSharedAccessSignatureKeyName(),
+                    eventHubTemplate.getSharedAccessSignatureKey());
+            try {
+                ehClient = EventHubClient.createFromConnectionStringSync(connStr.toString());
+            } catch (ServiceBusException | IOException e) {
+                logger.error(e);
+            }
+        }
+        return ehClient;
     }
 ```
