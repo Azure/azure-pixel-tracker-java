@@ -7,7 +7,6 @@ An interface and an abstract class are provided to base a Pixel API upon. The in
 
 ```java
 package com.microsoft.azure.server.pixeltracker.api;
-
 import ...;
 
 public interface Pixel {
