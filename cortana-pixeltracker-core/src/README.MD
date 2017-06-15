@@ -63,7 +63,6 @@ First, it creates the base constructor, which performs a fast fail check on the 
 
 ```java
 package com.microsoft.azure.server.pixeltracker.api.handlers;
-
 import ...;
 
 public interface Handler {
