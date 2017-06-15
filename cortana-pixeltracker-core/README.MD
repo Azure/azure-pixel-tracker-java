@@ -176,7 +176,7 @@ public class EventHubSendHandler extends AbstractHandler {
 }
 ```
 
-The constructor takes an EventHubAutoConfiguration object as an input. This is used to access a singleton event hub client. 
+The *constructor* takes an EventHubAutoConfiguration object as an input. This is used to access a singleton event hub client. 
 
 ```java
     public EventHubSendHandler(EventHubAutoConfiguration ehClient) {
