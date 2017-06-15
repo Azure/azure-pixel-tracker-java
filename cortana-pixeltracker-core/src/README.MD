@@ -18,10 +18,9 @@ public interface Pixel {
     byte[] pixel(@RequestParam Map<String, String> queryParameters);
 }```
 
-The abstract implementation, **AbstractPixel.java**, adds some basic functionality to the class. 
-package com.microsoft.azure.server.pixeltracker.api;
-
 ### AbstractPixel.java
+The abstract implementation, **AbstractPixel.java**, adds some basic functionality to the class. 
+
 ```java
 package com.microsoft.azure.server.pixeltracker.api;
 import ...;
