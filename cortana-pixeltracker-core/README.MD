@@ -193,3 +193,50 @@ The *strategy* checks to see that the previous handlers were succesful, and then
         if (request.isSuccess()) sendWithEventHubClient(request);
     }
 ```
+
+###EventHubTemplate.java
+
+The **EventHubTemplate.java** class is used to help wire the configurations for Event Hub using Spring. It provides getters that are used by other classes to retrieve the stored credentials. 
+```java
+package com.microsoft.azure.eventhubs.spring;
+
+import org.springframework.boot.context.properties.ConfigurationProperties;
+
+@ConfigurationProperties(
+        prefix = "azure.eventhub"
+)
+public class EventHubTemplate {
+
+    private String serviceBusNamespaceName;
+    private String eventHubName;
+    private String sharedAccessSignatureKeyName;
+    private String sharedAccessSignatureKey;
+
+    public EventHubTemplate(String eventHubName,
+                            String serviceBusNamespaceName,
+                            String sharedAccessSignatureKeyName,
+                            String sharedAccessSignatureKey) throws Exception {...}
+
+    ...
+}
+```
+
+The *constructor* provides a fast fail in case the parameters for event hub have been configured incorrectly. 
+
+```java
+    public EventHubTemplate(String eventHubName,
+                            String serviceBusNamespaceName,
+                            String sharedAccessSignatureKeyName,
+                            String sharedAccessSignatureKey) throws Exception {
+        assert !(eventHubName == null || eventHubName.isEmpty()
+                || serviceBusNamespaceName == null || serviceBusNamespaceName.isEmpty()
+                || sharedAccessSignatureKeyName == null || sharedAccessSignatureKeyName.isEmpty()
+                || sharedAccessSignatureKey == null || sharedAccessSignatureKey.isEmpty())
+                : "Event Hub Parameters not properly set. Check Configuration";
+
+        this.eventHubName = eventHubName;
+        this.serviceBusNamespaceName = serviceBusNamespaceName;
+        this.sharedAccessSignatureKeyName = sharedAccessSignatureKeyName;
+        this.sharedAccessSignatureKey = sharedAccessSignatureKey;
+    }
+```
