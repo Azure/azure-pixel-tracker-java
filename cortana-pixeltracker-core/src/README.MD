@@ -10,7 +10,6 @@ package com.microsoft.azure.server.pixeltracker.api;
 import ...;
 
 public interface Pixel {
-
     @RequestMapping(value = "/pixel",
             produces = MediaType.IMAGE_GIF_VALUE,
             method = RequestMethod.GET, headers = "Accept=*/*")
