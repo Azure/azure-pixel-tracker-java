@@ -65,31 +65,18 @@ import ...;
 
 public interface Request {
     JSONObject getJson();
-
     boolean isSuccess();
-
     Request setSuccess(boolean success);
-
     String getQueryString();
-
     void put(String key, String value);
-
     byte[] getBytes(String encoding) throws UnsupportedEncodingException;
 }
 ```
 
 The **RequestImpl.java** abstract class provides the default implmentation for the methods declared in **Request** interface. 
 ```java
-
 package com.microsoft.azure.server.pixeltracker.api.model;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.UnsupportedEncodingException;
-import java.util.Map;
+import ...;
 
 public class RequestImpl implements Request {
     private static Logger logger = LogManager.getLogger();
@@ -130,9 +117,7 @@ import ...;
 
 public interface Handler {
     Future<Boolean> handle(Request request) throws Exception;
-
     void strategy(Request request) throws Exception;
-
     Handler setNextOperation(Handler childHandler);    
 }
 ```
