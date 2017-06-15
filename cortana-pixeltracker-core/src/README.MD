@@ -191,7 +191,7 @@ The constructor takes an EventHubAutoConfiguration object as an input. This is u
     }
 ```
 
-The **strategy** checks to see that the previous handlers were succesful, and then sends the JSON to event hub. 
+The *strategy* checks to see that the previous handlers were succesful, and then sends the JSON to event hub. 
 ```java
     @Override
     public void strategy(Request request) throws Exception {
