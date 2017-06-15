@@ -56,6 +56,70 @@ First, it creates the base constructor, which performs a fast fail check on the 
     }
 ```
 
+##Requst Model
+**Request.java**
+A common object needs to be based from handler to handler that will contain the change of states. The **Request.java** interface provides the framework for this model. 
+```java
+package com.microsoft.azure.server.pixeltracker.api.model;
+import ...;
+
+public interface Request {
+    JSONObject getJson();
+
+    boolean isSuccess();
+
+    Request setSuccess(boolean success);
+
+    String getQueryString();
+
+    void put(String key, String value);
+
+    byte[] getBytes(String encoding) throws UnsupportedEncodingException;
+}
+```
+
+The **RequestImpl.java** abstract class provides the default implmentation for the methods declared in **Request** interface. 
+```java
+
+package com.microsoft.azure.server.pixeltracker.api.model;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.util.Map;
+
+public class RequestImpl implements Request {
+    private static Logger logger = LogManager.getLogger();
+    private final JSONObject json = new JSONObject();
+    private boolean success = true;
+    private final Map<String, String> queryParameters;
+
+    public RequestImpl(Map<String, String> queryParameters) {...}
+
+    @Override
+    public boolean isSuccess() {...}
+
+    @Override
+    public Request setSuccess(boolean success) {...}
+
+    @Override
+    public String getQueryString() {...}
+
+    @Override
+    public void put(String key, String value) {...}
+
+    @Override
+    public byte[] getBytes(String encoding) throws UnsupportedEncodingException {...}
+
+    @Override
+    public JSONObject getJson() {...}
+}
+```
+
+
 ##Handlers
 ###Handler.java
 **Handler.java** is an interface for chaining together transformations. Each handler will implement a *handle*, *strategy* and *setNextOperation* method.
