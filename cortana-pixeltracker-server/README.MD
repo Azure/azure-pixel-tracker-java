@@ -155,3 +155,60 @@ The *strategy* first retrieves the query string from the request object. It then
         else request.setSuccess(false);
     }
 ```
+
+###EventHubSendHandler.java
+
+The **EventHubSendHandler.java** takes the JSON stored in request, and sends it to Event Hub for storage and processing. Spring is used to wire the Event Hub configurations. The configurations will be declared as beans in the main class of our service.
+
+```java
+/*
+ * Copyright (c) Microsoft. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project root for full license information.
+ */
+package com.microsoft.azure.server.pixeltracker.api.handlers.impl;
+
+import com.microsoft.azure.eventhubs.EventData;
+import com.microsoft.azure.eventhubs.spring.EventHubAutoConfiguration;
+import com.microsoft.azure.server.pixeltracker.api.model.Request;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.io.UnsupportedEncodingException;
+import java.util.concurrent.CompletableFuture;
+
+public class EventHubSendHandler extends AbstractHandler {
+    private static Logger logger = LogManager.getLogger();
+
+    @Autowired
+    private EventHubAutoConfiguration ehClient;
+    private final String ENCODING = "UTF-8";
+
+    public EventHubSendHandler(EventHubAutoConfiguration ehClient) {...}
+
+    @Override
+    public void strategy(Request request) throws Exception {...}
+
+    private CompletableFuture<Void> sendWithEventHubClient(Request request) throws UnsupportedEncodingException {...}
+
+    private EventData eventDataFrom(Request request) throws UnsupportedEncodingException {...}
+}
+```
+
+The constructor takes an EventHubAutoConfiguration object as an input. This is used to access a singleton event hub client. 
+
+```java
+    public EventHubSendHandler(EventHubAutoConfiguration ehClient) {
+        assert ehClient != null;
+        this.ehClient = ehClient;
+    }
+```
+
+The **strategy** checks to see that the previous handlers were succesful, and then sends the JSON to event hub. 
+```java
+    @Override
+    public void strategy(Request request) throws Exception {
+        logger.trace("Event hub Send Strategy");
+        if (request.isSuccess()) sendWithEventHubClient(request);
+    }
+```
