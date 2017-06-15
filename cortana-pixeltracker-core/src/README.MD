@@ -82,7 +82,6 @@ public interface Handler {
 
 ```java
 package com.microsoft.azure.server.pixeltracker.api.handlers.impl;
-
 import ...;
 
 public abstract class AbstractHandler implements Handler {
@@ -124,7 +123,6 @@ The **JsonQueryStringHandler.java** handler processes the query string from the 
 
 ```java
 package com.microsoft.azure.server.pixeltracker.api.handlers.impl;
-
 import ...;
 
 public class JsonQueryStringHandler extends AbstractHandler {
@@ -167,15 +165,7 @@ The **EventHubSendHandler.java** takes the JSON stored in request, and sends it 
  */
 package com.microsoft.azure.server.pixeltracker.api.handlers.impl;
 
-import com.microsoft.azure.eventhubs.EventData;
-import com.microsoft.azure.eventhubs.spring.EventHubAutoConfiguration;
-import com.microsoft.azure.server.pixeltracker.api.model.Request;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import java.io.UnsupportedEncodingException;
-import java.util.concurrent.CompletableFuture;
+import ...;
 
 public class EventHubSendHandler extends AbstractHandler {
     private static Logger logger = LogManager.getLogger();
