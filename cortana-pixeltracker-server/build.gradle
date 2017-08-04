@@ -1,8 +1,8 @@
-
-description = ''
 plugins {
     id 'org.springframework.boot' version '1.5.6.RELEASE'
 }
+
+description = ''
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.thymeleaf:thymeleaf-spring4")
