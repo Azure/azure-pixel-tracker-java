@@ -1,0 +1,6 @@
+rootProject.name = 'azure-pixeltracker-parent'
+include ':cortana-pixeltracker-core'
+include ':cortana-pixeltracker-server'
+
+project(':cortana-pixeltracker-core').projectDir = "$rootDir/cortana-pixeltracker-core" as File
+project(':cortana-pixeltracker-server').projectDir = "$rootDir/cortana-pixeltracker-server" as File
