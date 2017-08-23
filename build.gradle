@@ -1,0 +1,36 @@
+allprojects  {
+  apply plugin: 'maven'
+
+  group = 'com.microsoft.azure'
+version = '1.0-SNAPSHOT'
+}
+
+subprojects {
+  apply plugin: 'java'
+  sourceCompatibility = 1.8
+  targetCompatibility = 1.8
+  tasks.withType(JavaCompile) {
+  	options.encoding = 'UTF-8'
+  }
+
+  
+  repositories {
+    mavenLocal()
+    
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+    maven { url "http://repo.maven.apache.org/maven2" }
+    maven { url "https://jitpack.io" }
+  }
+
+  
+  dependencies {
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version:'2.8.2'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version:'2.8.2'
+    compile group: 'org.json', name: 'json', version:'20160810'
+    compile group: 'com.microsoft.azure', name: 'azure-eventhubs', version:'0.14.0'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version:'5.0.0-M4'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version:'5.0.0-M4'
+}
+
+  
+}

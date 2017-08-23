@@ -27,32 +27,28 @@ public class Application {
     }
 
     @Bean
-    @Autowired
-    @Qualifier(value = "enable")
-    Handler handlers(Handler... handlers) {
-        return chainHandlers(handlers);
+    Handler handlers(EventHubAutoConfiguration eventHubAutoConfiguration) throws Exception {
+        return jsonQueryStringHandler()
+                .setNextOperation(eventHubSendHandler(eventHubAutoConfiguration));
     }
 
-    @Bean
-    @Qualifier(value = "enable")
     Handler jsonQueryStringHandler() {
         return new JsonQueryStringHandler();
     }
 
-    @Bean
-    @Qualifier(value = "enable")
-    Handler eventHubSendHandler() throws Exception {
-        return new EventHubSendHandler(eventHubAutoConfiguration());
+    Handler eventHubSendHandler(EventHubAutoConfiguration eventHubAutoConfiguration) throws Exception {
+        return new EventHubSendHandler(eventHubAutoConfiguration);
     }
 
     @Bean
-    EventHubAutoConfiguration eventHubAutoConfiguration() throws Exception {
-        return new EventHubAutoConfiguration(eventHubClientProperties());
+    EventHubAutoConfiguration eventHubAutoConfiguration(EventHubTemplate eventHubTemplate) throws Exception {
+        return new EventHubAutoConfiguration(eventHubTemplate);
     }
 
     @Bean
     EventHubTemplate eventHubClientProperties() throws Exception {
-        return new EventHubTemplate(eventHubName, serviceBusNamespaceName, sharedAccessSignatureKeyName, sharedAccessSignatureKey);
+        return new EventHubTemplate(eventHubName, serviceBusNamespaceName,
+                sharedAccessSignatureKeyName, sharedAccessSignatureKey);
     }
 
     @Value(value = "#{environment.EventHubServiceNamespace}")

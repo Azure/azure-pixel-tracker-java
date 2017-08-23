@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/azure-pixeltracker-parent.iml" filepath="$PROJECT_DIR$/azure-pixeltracker-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cortana-pixeltracker-core/cortana-pixeltracker-core.iml" filepath="$PROJECT_DIR$/cortana-pixeltracker-core/cortana-pixeltracker-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cortana-pixeltracker-server/cortana-pixeltracker-server.iml" filepath="$PROJECT_DIR$/cortana-pixeltracker-server/cortana-pixeltracker-server.iml" />
+    </modules>
+  </component>
+</project>
