@@ -34,8 +34,8 @@ public class RequestImpl implements Request {
     }
 
     @Override
-    public String getQueryString() {
-        return queryParameters.toString();
+    public Map<String, String> getQueryString() {
+        return queryParameters;
     }
 
     @Override

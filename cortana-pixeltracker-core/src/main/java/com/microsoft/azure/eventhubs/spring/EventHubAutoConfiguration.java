@@ -5,6 +5,7 @@
 package com.microsoft.azure.eventhubs.spring;
 
 import com.microsoft.azure.eventhubs.EventHubClient;
+import com.microsoft.azure.eventhubs.IEventHubClient;
 import com.microsoft.azure.servicebus.ConnectionStringBuilder;
 import com.microsoft.azure.servicebus.ServiceBusException;
 import org.apache.logging.log4j.LogManager;
@@ -25,18 +26,19 @@ import java.io.IOException;
 @ConditionalOnClass({com.microsoft.azure.eventhubs.EventHubClient.class})
 @Conditional({EventHubAutoConfiguration.EventHubPropertyCondition.class})
 @EnableConfigurationProperties({EventHubTemplate.class})
-public class EventHubAutoConfiguration {
+public class EventHubAutoConfiguration implements IEventHubAutoConfiguration {
     private static Logger logger = LogManager.getLogger();
     private final EventHubTemplate eventHubTemplate;
-    private EventHubClient ehClient;
+    private IEventHubClient ehClient;
 
     public EventHubAutoConfiguration(EventHubTemplate eventHubTemplate) {
         this.eventHubTemplate = eventHubTemplate;
     }
 
+    @Override
     @Bean
     @ConditionalOnMissingBean({EventHubClient.class})
-    public EventHubClient eventHubClient() {
+    public IEventHubClient eventHubClient() {
         if (ehClient == null) {
             ConnectionStringBuilder connStr = new ConnectionStringBuilder(
                     eventHubTemplate.getServiceBusNamespaceName(),

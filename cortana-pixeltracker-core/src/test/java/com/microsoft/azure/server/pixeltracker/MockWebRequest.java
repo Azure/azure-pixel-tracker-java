@@ -18,7 +18,7 @@ import java.util.Map;
  * <p>
  * Created by dcibo on 5/25/2017.
  */
-class MockWebRequest implements HttpServletRequest {
+public class MockWebRequest implements HttpServletRequest {
     @Override
     public String getAuthType() {
         return null;

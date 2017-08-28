@@ -7,6 +7,7 @@ package com.microsoft.azure.server.pixeltracker.api.model;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Map;
 
 public interface Request {
     JSONObject getJson();
@@ -15,7 +16,7 @@ public interface Request {
 
     Request setSuccess(boolean success);
 
-    String getQueryString();
+    Map<String, String> getQueryString();
 
     void put(String key, String value);
 

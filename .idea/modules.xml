@@ -3,8 +3,12 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/azure-pixeltracker-parent.iml" filepath="$PROJECT_DIR$/azure-pixeltracker-parent.iml" />
-      <module fileurl="file://$PROJECT_DIR$/cortana-pixeltracker-core/cortana-pixeltracker-core.iml" filepath="$PROJECT_DIR$/cortana-pixeltracker-core/cortana-pixeltracker-core.iml" />
-      <module fileurl="file://$PROJECT_DIR$/cortana-pixeltracker-server/cortana-pixeltracker-server.iml" filepath="$PROJECT_DIR$/cortana-pixeltracker-server/cortana-pixeltracker-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cortana-pixeltracker-core/cortana-pixeltracker-core.iml" filepath="$PROJECT_DIR$/cortana-pixeltracker-core/cortana-pixeltracker-core.iml" group="cortana-pixeltracker-core" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/cortana-pixeltracker-core/cortana-pixeltracker-core_main.iml" filepath="$PROJECT_DIR$/.idea/modules/cortana-pixeltracker-core/cortana-pixeltracker-core_main.iml" group="cortana-pixeltracker-core" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/cortana-pixeltracker-core/cortana-pixeltracker-core_test.iml" filepath="$PROJECT_DIR$/.idea/modules/cortana-pixeltracker-core/cortana-pixeltracker-core_test.iml" group="cortana-pixeltracker-core" />
+      <module fileurl="file://$PROJECT_DIR$/cortana-pixeltracker-server/cortana-pixeltracker-server.iml" filepath="$PROJECT_DIR$/cortana-pixeltracker-server/cortana-pixeltracker-server.iml" group="cortana-pixeltracker-server" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/cortana-pixeltracker-server/cortana-pixeltracker-server_main.iml" filepath="$PROJECT_DIR$/.idea/modules/cortana-pixeltracker-server/cortana-pixeltracker-server_main.iml" group="cortana-pixeltracker-server" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/cortana-pixeltracker-server/cortana-pixeltracker-server_test.iml" filepath="$PROJECT_DIR$/.idea/modules/cortana-pixeltracker-server/cortana-pixeltracker-server_test.iml" group="cortana-pixeltracker-server" />
     </modules>
   </component>
 </project>

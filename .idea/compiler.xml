@@ -13,7 +13,11 @@
     <bytecodeTargetLevel>
       <module name="azure-pixeltracker-parent" target="1.5" />
       <module name="cortana-pixeltracker-core" target="1.8" />
+      <module name="cortana-pixeltracker-core_main" target="1.8" />
+      <module name="cortana-pixeltracker-core_test" target="1.8" />
       <module name="cortana-pixeltracker-server" target="1.8" />
+      <module name="cortana-pixeltracker-server_main" target="1.8" />
+      <module name="cortana-pixeltracker-server_test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
