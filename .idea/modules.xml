@@ -9,6 +9,10 @@
       <module fileurl="file://$PROJECT_DIR$/cortana-pixeltracker-server/cortana-pixeltracker-server.iml" filepath="$PROJECT_DIR$/cortana-pixeltracker-server/cortana-pixeltracker-server.iml" group="cortana-pixeltracker-server" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/cortana-pixeltracker-server/cortana-pixeltracker-server_main.iml" filepath="$PROJECT_DIR$/.idea/modules/cortana-pixeltracker-server/cortana-pixeltracker-server_main.iml" group="cortana-pixeltracker-server" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/cortana-pixeltracker-server/cortana-pixeltracker-server_test.iml" filepath="$PROJECT_DIR$/.idea/modules/cortana-pixeltracker-server/cortana-pixeltracker-server_test.iml" group="cortana-pixeltracker-server" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/server.iml" filepath="$PROJECT_DIR$/.idea/modules/server.iml" group="server" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/server/server_integrationTest.iml" filepath="$PROJECT_DIR$/.idea/modules/server/server_integrationTest.iml" group="server" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/server/server_main.iml" filepath="$PROJECT_DIR$/.idea/modules/server/server_main.iml" group="server" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/server/server_test.iml" filepath="$PROJECT_DIR$/.idea/modules/server/server_test.iml" group="server" />
     </modules>
   </component>
 </project>
