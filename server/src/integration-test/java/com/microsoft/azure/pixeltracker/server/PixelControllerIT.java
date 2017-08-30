@@ -29,7 +29,7 @@ public class PixelControllerIT {
 
     @Before
     public void setUp() throws Exception {
-        this.base = new URL(getHostname() + ":" + port + "/pixel");
+        this.base = new URL(getHostname(port) + "pixel");
     }
 
     @Test

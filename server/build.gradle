@@ -13,23 +13,23 @@ apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 
 jar {
-    baseName = 'cortana-pixeltracker-server'
-    version = '1.0-SNAPSHOT'
+    baseName = 'pixel-tracker-server'
+    version = '0.1.0'
 }
 
 repositories {
     mavenCentral()
 }
 
-sourceSets {
-    integrationTest {
-        java {
-            compileClasspath += main.output + test.output
-            runtimeClasspath += main.output + test.output
-            srcDir file('src/integration-test/java')
-        }
-    }
-}
+//sourceSets {
+//    integrationTest {
+//        java {
+//            compileClasspath += main.output + test.output
+//            runtimeClasspath += main.output + test.output
+//            srcDir file('src/integration-test/java')
+//        }
+//    }
+//}
 
 configurations {
     integrationTestCompile.extendsFrom testCompile
@@ -45,8 +45,14 @@ dependencies {
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
 
-test{
-    System.setProperty('hostname', 'http://localhost')
-    systemProperties System.getProperties()
-}
+//task integrationTest(type: Test) {
+//    testClassesDir = sourceSets.integrationTest.output.classesDir
+//    classpath = sourceSets.integrationTest.runtimeClasspath
+//    systemProperties(System.getProperties().subMap(['hostname']))
+//
+//    outputs.upToDateWhen { false }
+//}
 
+tasks.withType(Test) {
+    reports.html.destination = file("${reporting.baseDir}/${name}")
+}

@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.net.URL;
+import java.util.Properties;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
@@ -32,7 +33,8 @@ public class IndexControllerIT {
 
     @Before
     public void setUp() throws Exception {
-        this.base = new URL(getHostname() + ":" + port + "/");
+//        this.base = new URL(getHostname() + ":" + port + "/");
+        this.base = new URL(getHostname(port) + "/");
     }
 
     @Test
@@ -42,12 +44,16 @@ public class IndexControllerIT {
         assertThat(response.getBody(), equalTo("Greetings from Spring Boot!"));
     }
 
-    public static String getHostname() {
-        String hostname;
-        if (!System.getProperties().contains("hostname")) {
-            System.setProperty("hostname", "http://localhost");
-        }
-        hostname = System.getProperty("hostname");
+    public static String getHostname(int port) {
+        String hostname = "http://localhost" + ":" + port + "/";
+//        if (!System.getProperties().contains("hostname")) {
+//            System.setProperty("hostname", "http://localhost"+ ":" + port + "/");
+//            System.setProperty("hostname", "http://intstreamingestwebapp.azurewebsites2.net/");
+//        }
+        Properties properties = System.getProperties();
+        if (properties.containsKey("hostname"))
+            hostname = System.getProperty("hostname");
+        System.out.println("hostname = " + hostname);
         return hostname;
     }
 }

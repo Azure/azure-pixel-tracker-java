@@ -1,8 +1,8 @@
 rootProject.name = 'azure-pixeltracker-parent'
 include ':cortana-pixeltracker-core'
-include ':cortana-pixeltracker-server'
+include ':server'
 
 project(':cortana-pixeltracker-core').projectDir = "$rootDir/cortana-pixeltracker-core" as File
-project(':cortana-pixeltracker-server').projectDir = "$rootDir/cortana-pixeltracker-server" as File
-include 'server'
+project(':server').projectDir = "$rootDir/server" as File
+//include 'server'
 
