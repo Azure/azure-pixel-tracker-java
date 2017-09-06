@@ -10,6 +10,11 @@ The code for receiving events from an HTTP call, and for sending the data to Eve
 
 The server code uses Spring Boot to wire together the core libaries and expose them as APIs. It is here that advanced custom funcationality can be added. Please see [Cortana Pixel Tracker Server Readme](./cortana-pixeltracker-server/README.md) for more information.
 
+#### Unit Tests
+Unit tests included can be run locally at any time. They do not depend on Azure rsesources being deployed. In place of classes dependent on Azure resources, mock classes are used. This allows the correctness of methods to be tested without adding complications on Azure configurations.
+
+#### Functional Tests
+Functional tests included can be run locally or pointed towards a deployment when provided with a hostname. When testing locally, the tests can be configured to use Azure resources or mock classes. When testing a deployment, the deployment should be using Azure configurations to exedcute tasks. 
 
 # Contributing
 
