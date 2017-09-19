@@ -17,14 +17,13 @@ public class EventHubAutoConfiguration implements IEventHubAutoConfiguration {
     private IEventHubClient ehClient;
 
     public EventHubAutoConfiguration() throws IOException, ServiceBusException {
-        String connStr;
         if (System.getenv().containsKey("CUSTOMCONNSTR_ConnString1")) {
-            connStr = System.getenv("CUSTOMCONNSTR_ConnString1");
+            String connStr = System.getenv("CUSTOMCONNSTR_ConnString1");
             ehClient = EventHubClient.createFromConnectionStringSync(connStr.toString());
             logger.info("Event Hub env var found!");
         } else {
             ehClient = new MockEventHubClient();
-            logger.info("Event Hub env var missing! Testing?");
+            logger.warn("Event Hub env var missing! Testing?");
         }
     }
 

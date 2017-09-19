@@ -42,6 +42,7 @@ targetCompatibility = 1.8
 dependencies {
     compile project(':cortana-pixeltracker-core')
     compile("org.springframework.boot:spring-boot-starter-web")
+    compile group: 'com.microsoft.azure', name: 'azure-storage', version: '5.4.0'
     testCompile("junit:junit")
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
