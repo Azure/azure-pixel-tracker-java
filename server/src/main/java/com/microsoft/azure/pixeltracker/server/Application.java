@@ -31,7 +31,7 @@ public class Application {
         pixelHandler.setNextOperation(new JsonQueryStringHandler());
         pixelHandler.setNextOperation(new EventHubSendHandler(eventHubAutoConfiguration));
 
-        if (System.getenv().containsKey("PersonalizedOffers_ConnString")) {
+        if (System.getenv().containsKey("CUSTOMCONNSTR_PersonalizedOffers")) {
             pixelHandler.setNextOperation(new PersonalizedOffersHandlerImpl(cloudQueue()));
         }
 
@@ -44,7 +44,7 @@ public class Application {
     }
 
     public static CloudQueue cloudQueue() {
-        String storageConnectionString = System.getenv("PersonalizedOffers_ConnString");
+        String storageConnectionString = System.getenv("CUSTOMCONNSTR_PersonalizedOffers");
         try {
             CloudStorageAccount storageAccount = CloudStorageAccount.parse(storageConnectionString);
             return storageAccount.createCloudQueueClient().getQueueReference("useractionqueue");
