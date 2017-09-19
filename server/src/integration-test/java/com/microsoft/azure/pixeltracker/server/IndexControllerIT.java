@@ -41,7 +41,9 @@ public class IndexControllerIT {
     public void getHello() throws Exception {
         ResponseEntity<String> response = template.getForEntity(base.toString(),
                 String.class);
-        assertThat(response.getBody(), equalTo("Greetings from Spring Boot!"));
+        Properties properties = System.getProperties();
+        if (!properties.containsKey("hostname"))
+            assertThat(response.getBody(), equalTo("{}"));
     }
 
     public static String getHostname(int port) {
