@@ -12,7 +12,7 @@ public class Index {
         if (System.getenv().containsKey("CUSTOMCONNSTR_ConnString1")) {
             jsonObject.put("EventHub", true);
         }
-        if (System.getenv().containsKey("PersonalizedOffers_ConnString")) {
+        if (System.getenv().containsKey("CUSTOMCONNSTR_PersonalizedOffers")) {
             jsonObject.put("Personalized Offers", true);
         }
         if (System.getenv().containsKey("Customer360_ConnString")) {
